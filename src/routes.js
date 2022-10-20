@@ -69,4 +69,22 @@ router.get('/docent', async(req, res) => {
         res.sendStatus(500);
     }
 });
+router.get('/docent/:id', async(req, res) => {
+    console.log('/docent/:id route called');
+    try {
+        res.json(await Docent.findById(req.params.id).populate('campuses'));
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
+router.post('/docent/create', async(req, res) => {
+    console.log('/docent/create route called');
+    try {
+        res.json(await Docent.create(req.body));
+    } catch (e) {
+        console.log(e);
+        res.sendStatus(500);
+    }
+});
 module.exports = router;
