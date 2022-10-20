@@ -63,7 +63,7 @@ router.put('/campus/update/:id', async(req, res) => {
 router.get('/docent', async(req, res) => {
     console.log('/docent route called');
     try {
-        res.json(await Docent.find().populate('campussen'));
+        res.json(await Docent.find().populate('campuses').sort('voornaam'));
     } catch (e) {
         console.log(e);
         res.sendStatus(500);
